@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+    <link rel="stylesheet" type="text/css" href="/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet">
+    <title>ToDo-шка</title>
+</head>
+
+<body>
+    <main>
+        <h1>Задачи на день</h1>
+        <form name="task_form" class="task_form">
+            <input type="text" class="input-task" id="input-task" size="30" placeholder="Покормить котика" required><br>
+            <button class="main-btn">Добавить</button>
+        </form>
+        <br>
+        <hr>
+        <h2>Cписок задач:</h2>
+        <div class="task-list">
+
+            <!-- <div class="empty-list">
+                <img class="empty-icon" src="/empty.png">
+                <span>Нет ни одной задачи</span>
+            </div> -->
+            <!-- <div class="task">
+                    <div class="checkbox">
+                        <input type="checkbox" id="task-checkbox" class="box">
+                        <p class="task-txt">тестовая задача</p>
+                        <button class="delete-task" data-action="delete"><img class="del-img" src="close.png"></button>
+                    </div>
+                    
+                </div> -->
+
+
+        </div>
+        <br>
+        <button class="clear-all-btn">Очистить список</button>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
