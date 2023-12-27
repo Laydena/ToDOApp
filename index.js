@@ -4,7 +4,7 @@ const form = document.querySelector(".task_form");
 const emptyList = document.querySelector(".empty-list");
 
 const inputTask = document.getElementById("input-task");
-const checkbox = document.getElementById("task-checkbox");
+const checkbox = document.querySelector(".box");
 
 const tasksList = document.querySelector(".task-list");
 
@@ -14,30 +14,20 @@ let tasks = [];
 //Проверяем local Storage
 if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks.forEach((task) => renderTask(task));
 };
 
-tasks.forEach(function (task) {
-    renderTask(task);
-})
 
 checkEmptyList();
 
 
 
-//Всякое кнопочное
-form.addEventListener('submit', addTask)
-tasksList.addEventListener('click', deleteTask)
-tasksList.addEventListener('change', doneTask)
-clearTaskList.addEventListener('click', deleteAllTasks);
+
 
 //Добавляем задачу
 function addTask(evt) {
     evt.preventDefault();
     const taskText = inputTask.value;
-
-    if (taskText === 0) {
-        document.querySelector(".main-btn").disabled = true;
-    }
 
     const newTask = {
         id: Date.now(),
@@ -132,7 +122,7 @@ function renderTask(task) {
     const taskHtml = `
     <div class="${cssClass}" id="${task.id}">
                     <div class="${chbxStyle}">
-                        <input type="checkbox" id="task-checkbox" ${chbxValue} class="box">
+                        <input type="checkbox" ${chbxValue} class="box">
                         <p class="task-txt">${task.text}</p>
                     </div>
                     <button class="delete-task" data-action="delete"><img class="del-img" src="close.png"></button>
@@ -145,19 +135,35 @@ function renderTask(task) {
 
 //Удаляем задачу
 function deleteAllTasks() {
+    // evt.preventDefault();
 
     let tasktoDel = document.querySelectorAll(".task");
-    tasktoDel.forEach(e => e.remove());
-    localStorage.clear();
+    console.log(tasktoDel.length)
+
+    if (tasktoDel.length < 1) {
+        document.querySelector(".clear-all-btn").disabled = true;
+
+    } else {
+        // console.log(window.localStorage.length);
+        tasktoDel.forEach(e => e.remove());
+        window.localStorage.clear();
+        // saveToLS();
 
 
-    const emptyListHtml = `
-        <div class="empty-list">
-                <img class="empty-icon" src="/empty.png">
-                <span>Нет ни одной задачи</span>
-            </div>
-        `;
-    tasksList.insertAdjacentHTML('afterbegin', emptyListHtml)
+        const emptyListHtml = `
+            <div class="empty-list">
+                    <img class="empty-icon" src="/empty.png">
+                    <span>Нет ни одной задачи</span>
+                </div>
+            `;
+        tasksList.insertAdjacentHTML('afterbegin', emptyListHtml);
+    }
+    return
 }
 
 
+//Всякое кнопочное
+form.addEventListener('submit', addTask)
+tasksList.addEventListener('click', deleteTask)
+tasksList.addEventListener('change', doneTask)
+clearTaskList.addEventListener('click', deleteAllTasks);
