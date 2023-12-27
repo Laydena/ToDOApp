@@ -1,10 +1,14 @@
+body {
+    background-color: rgb(247, 230, 230);
+}
+
 main {
     font-family: 'Inter', sans-serif;
     margin: 0 auto;
     padding: 50px 30px;
     width: 500px;
 
-    background-color: rgb(247, 230, 230);
+    border: 2px solid #fff;
 }
 
 

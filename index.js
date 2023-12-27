@@ -144,10 +144,8 @@ function deleteAllTasks() {
         document.querySelector(".clear-all-btn").disabled = true;
 
     } else {
-        // console.log(window.localStorage.length);
         tasktoDel.forEach(e => e.remove());
         window.localStorage.clear();
-        // saveToLS();
 
 
         const emptyListHtml = `
