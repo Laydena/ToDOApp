@@ -138,3 +138,17 @@ h1 {
 .clear-all-btn:hover {
     background-color: rgb(248, 189, 155);
 }
+
+.inactive {
+    background-color: rgb(171, 171, 171);
+    border: none;
+    border-radius: 0.25rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #000000;
+    text-transform: uppercase;
+}
+
+.inactive:hover {
+    background-color: rgb(171, 171, 171);
+}

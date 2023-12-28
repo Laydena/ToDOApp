@@ -11,6 +11,7 @@ const tasksList = document.querySelector(".task-list");
 
 let tasks = [];
 
+
 //Проверяем local Storage
 if (localStorage.getItem('tasks')) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -19,8 +20,6 @@ if (localStorage.getItem('tasks')) {
 
 
 checkEmptyList();
-
-
 
 
 
@@ -97,12 +96,14 @@ function checkEmptyList() {
                 <span>Нет ни одной задачи</span>
             </div>
         `;
-        tasksList.insertAdjacentHTML('afterbegin', emptyListHtml)
+        tasksList.insertAdjacentHTML('afterbegin', emptyListHtml);
+        document.querySelector(".clear-all-btn").disabled = true;
     }
 
     if (tasks.length > 0) {
         const emptyListEl = document.querySelector(".empty-list");
         emptyListEl ? emptyListEl.remove() : null;
+        document.querySelector(".clear-all-btn").disabled = false;
     }
 }
 
@@ -135,28 +136,17 @@ function renderTask(task) {
 
 //Удаляем задачу
 function deleteAllTasks() {
-    // evt.preventDefault();
+    checkEmptyList();
 
     let tasktoDel = document.querySelectorAll(".task");
     console.log(tasktoDel.length)
 
-    if (tasktoDel.length < 1) {
-        document.querySelector(".clear-all-btn").disabled = true;
+    tasktoDel.forEach(e => e.remove());
+    window.localStorage.clear();
+    tasks.length = 0;
 
-    } else {
-        tasktoDel.forEach(e => e.remove());
-        window.localStorage.clear();
+    checkEmptyList();
 
-
-        const emptyListHtml = `
-            <div class="empty-list">
-                    <img class="empty-icon" src="/empty.png">
-                    <span>Нет ни одной задачи</span>
-                </div>
-            `;
-        tasksList.insertAdjacentHTML('afterbegin', emptyListHtml);
-    }
-    return
 }
 
 
@@ -165,3 +155,4 @@ form.addEventListener('submit', addTask)
 tasksList.addEventListener('click', deleteTask)
 tasksList.addEventListener('change', doneTask)
 clearTaskList.addEventListener('click', deleteAllTasks);
+
