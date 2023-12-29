@@ -92,7 +92,7 @@ function checkEmptyList() {
     if (tasks.length === 0) {
         const emptyListHtml = `
         <div class="empty-list">
-                <img class="empty-icon" src="/empty.png">
+                <img class="empty-icon" src="empty.png">
                 <span>Нет ни одной задачи</span>
             </div>
         `;
